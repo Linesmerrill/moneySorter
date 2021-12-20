@@ -24,31 +24,30 @@ func moneySorter(cents int) Change {
 	if cents/25 != 0 {
 		quarters := cents / 25
 		totalChange.Quarters = quarters
-		cents = cents - quarters*25
-	}
-	if cents == 0 {
-		return totalChange
+		cents = cents % 25
+		if cents == 0 {
+			return totalChange
+		}
 	}
 
 	//calculate dimes
 	if cents/10 != 0 {
 		dimes := cents / 10
 		totalChange.Dimes = dimes
-		cents = cents - dimes*10
-	}
-	if cents == 0 {
-		return totalChange
+		cents = cents % 10
+		if cents == 0 {
+			return totalChange
+		}
 	}
 
 	//calculate nickels
 	if cents/5 != 0 {
 		nickels := cents / 5
 		totalChange.Nickels = nickels
-		cents = cents - nickels*5
-	}
-
-	if cents == 0 {
-		return totalChange
+		cents = cents % 5
+		if cents == 0 {
+			return totalChange
+		}
 	}
 
 	//pennies are whatever is left over
